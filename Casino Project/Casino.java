@@ -1,13 +1,12 @@
 /**
- * This class runs LittleJackpot and finds averages for multiple trials.
- * The trials are use definened in how many trials are run.
+ * This class runs trials based on LittleJacpot and finds averages for multiple trials.
+ * The trials are use defined in how many trials are run.
  *
  *
  * @author Aditya Kalari
  * @version 8.21.2015
  */
  
-import java.lang.StringBuilder;
 import java.util.Scanner;
 
 public class Casino {
