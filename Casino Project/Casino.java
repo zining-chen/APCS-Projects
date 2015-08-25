@@ -11,16 +11,16 @@ import java.util.Scanner;
 
 public class Casino {
 
-	// NumSides, NumTrials for later use
+// NumSides, NumTrials for later use
     private int numSides;
     private int numTrials;
 
-	// Declare array of dice
+// Declare array of dice
     private Dice diceSet[];
 
     public Casino () {
 
-		// Initialize values to defaults
+	// Initialize values to defaults
         numSides = 4;
         diceSet = new Dice [4];
 
