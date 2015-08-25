@@ -1,4 +1,4 @@
-# APCS-Projects
+# APCS Projects
 
 These are APCS Projects for the 2015-2016 School Year. These are all the projects from the APCS 
 course at MVHS, both DeRuiter and Greenstein. If you feel there is any code missing, feel free to
