@@ -65,7 +65,7 @@ public class Casino {
             int avg = temp/numTrials;
             totalAvg[tried] = avg;
 
-            int diff = (totalAvg[4]*1)+80;
+            int diff = (totalAvg[4])+80;
             starNum[tried] = totalAvg[tried]/diff;
 
             System.out.printf("%2d:\t%6d\t%s\n", tried, avg, drawStars(starNum[tried]));
