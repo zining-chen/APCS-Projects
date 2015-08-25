@@ -12,13 +12,16 @@ import java.util.Scanner;
 
 public class Casino {
 
+	// NumSides, NumTrials for later use
     private int numSides;
     private int numTrials;
 
+	// Declare array of dice
     private Dice diceSet[];
 
     public Casino () {
 
+		// Initialize values to defaults
         numSides = 4;
         diceSet = new Dice [4];
 
@@ -28,11 +31,12 @@ public class Casino {
 
         Casino setup = new Casino();
 
+		// Run printing methods
         setup.getNumTrials();
         setup.getAvgSpins();
 
     }
-
+	  
     private void getNumTrials() {
 
         System.out.println();
@@ -41,7 +45,7 @@ public class Casino {
 
         System.out.print(" Number\n");
         System.out.print("  of\t Ave Number\n");
-        System.out.print(" Sides\t of Spins\n");
+        System.out.print(" Sides\t of Spins\n\n");
 
     }
 
@@ -49,9 +53,11 @@ public class Casino {
 
         int singleAvg[] = new int[100000];
         int totalAvg[] = new int [21];
-        int starNum[] = new int [100000];
+        int starNum[] = new int [21];
+        
+        int maxSpins = 0;
 
-        for (int tried = 0; tried < totalAvg.length; tried++) {
+        for (int tried = 4; tried < totalAvg.length; tried++) {
 
             for (int trial = 0; trial < numTrials; trial++)
                 singleAvg[trial] = runTrials(tried);
@@ -65,14 +71,36 @@ public class Casino {
             int avg = temp/numTrials;
             totalAvg[tried] = avg;
 
-            int diff = (totalAvg[4])+80;
-            starNum[tried] = totalAvg[tried]/diff;
-
-            System.out.printf("%2d:\t%6d\t%s\n", tried, avg, drawStars(starNum[tried]));
-
         }
+        
+        maxSpins = getArrayMax(totalAvg);
+        
+        for (int setStars = 0; setStars < starNum.length; setStars++)
+			starNum[setStars] = getStars(maxSpins, totalAvg[setStars]);
+        
+        for (int sides = 4; sides < 21; sides++)
+			System.out.printf("%2d:\t%6d\t%s\n", sides, totalAvg[sides], drawStars(starNum[sides]));
+		
+	}
 
-    }
+    private int getStars (int maxValue, int currentValue) {
+	
+		double proportion = ((double)(currentValue))/((double)(maxValue));
+		int numStars = (int)(60 * proportion);
+		
+		return numStars;
+	}
+    
+    private int getArrayMax (int inputArray[]) {
+		
+		int runningMax = 0;
+		
+		for (int checkMax = 0; checkMax < inputArray.length; checkMax++)
+			if (inputArray[checkMax] > runningMax) { runningMax = inputArray[checkMax]; }
+		
+		return runningMax;
+		
+	}
 
     private int runTrials (int sides) {
 
@@ -93,7 +121,6 @@ public class Casino {
             for (int dieNum = 0; dieNum < 4; dieNum++)
                 diceSet[dieNum].roll();
 
-
             if (diceSet[0].getValue() == diceSet[1].getValue()) {
                 if (diceSet[0].getValue() == diceSet[2].getValue()) {
                     if (diceSet[0].getValue() == diceSet[3].getValue()) {
@@ -108,12 +135,12 @@ public class Casino {
 
     private String drawStars (int avg) {
 
-        StringBuilder buildStars = new StringBuilder();
+        String buildStars = "";
 
         for (int i = 0; i < avg; i++)
-            buildStars.append('*');
+            buildStars += "*";
 
-        return buildStars.toString();
+        return buildStars;
     }
 
 }
