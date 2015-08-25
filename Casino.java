@@ -2,6 +2,7 @@
  * This class runs LittleJackpot and finds averages for multiple trials.
  * The trials are use definened in how many trials are run.
  *
+ *
  * @author Aditya Kalari
  * @version 8.21.2015
  */
@@ -13,7 +14,7 @@ public class Casino {
 	private Dice[] dieSet;
 	
 	private int numTrials;
-	
+
 	public Casino () {
 		dieSet = [4]
 		dieSet[0] = new Dice();
