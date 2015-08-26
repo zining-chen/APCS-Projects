@@ -30,7 +30,7 @@ public class Casino {
 
         Casino setup = new Casino();
 
-	// Run printing methods
+		// Run printing methods
         setup.getNumTrials();
         setup.getAvgSpins();
 
@@ -125,7 +125,7 @@ public class Casino {
 		
 		int runningMax = 0;
 		
-		// Loops through and get the maximum of the array
+        // Loops through and get the maximum of the array
 		for (int checkMax = 0; checkMax < inputArray.length; checkMax++)
 			if (inputArray[checkMax] > runningMax) { runningMax = inputArray[checkMax]; }
 		
