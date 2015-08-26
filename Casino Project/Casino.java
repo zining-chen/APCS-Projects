@@ -64,7 +64,7 @@ public class Casino {
         int totalAvg[] = new int [21];      // Holds all the averages across all the dice
         int starNum[] = new int [21];       // Holds the number of stars for each row of histogram
         
-        int maxSpins = 0;                   // Hold the maxSpins, for making proportions based on stars
+        int maxSpins = 0; // Hold the maxSpins, for making proportions based on stars
 
         // Loops through the totalAvg array and stores values from all the trials
         for (int tried = 4; tried < totalAvg.length; tried++) {
