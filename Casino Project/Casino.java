@@ -1,5 +1,5 @@
 /**
- * This class runs trials based on LittleJacpot and finds averages for multiple trials.
+ * This class runs trials based on LittleJackpot and finds averages for multiple trials.
  * The trials are use defined in how many trials are run.
  *
  *
