@@ -20,8 +20,8 @@ The environment variable is easier to manage at runtime, but
 I never got it to work. Here are the instructions to do use
 the Environment Variable:
 
-```$CLASSPATH=<path>```
-```$set CLASSPATH```
+```$CLASSPATH=<path>
+set CLASSPATH```
 
 The following should work, but never did for me.
 
