@@ -70,7 +70,7 @@ public class Coins {
 	 */
 	private void printCoins (int total, int quarters, int dimes, int nickels) {
 		// Printf with 8 spaces for words and 6 for the numbers
-		System.out.printf("%8s: %6d %8s: %6d %8s %6d %8s %6d \n",
+		System.out.printf("%8s: %6d %8s: %6d %8s: %6d %8s: %6d \n",
 			 "Quarters", quarters,
                          "Dimes", dimes,
                          "Nickels", nickels,
