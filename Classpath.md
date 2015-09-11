@@ -8,10 +8,10 @@ In order to use classpath, we have to do different things for
 our running and compiling of files.
 
 Compiling Code:
-'''javac -cp <path> <Filename.java>'''
+```$javac -cp <path> <Filename.java>```
 
 Running Code:
-'''java -cp .:<path> <Filename.java>'''
+```$java -cp .:<path> <Filename.java>```
 
 
 ###Environment Variable
@@ -20,8 +20,8 @@ The environment variable is easier to manage at runtime, but
 I never got it to work. Here are the instructions to do use
 the Environment Variable:
 
-'''CLASSPATH=<path>'''
-'''set CLASSPATH'''
+```$CLASSPATH=<path>```
+```$set CLASSPATH```
 
 The following should work, but never did for me.
 
