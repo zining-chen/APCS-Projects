@@ -14,5 +14,5 @@
 then dimes, then quarters. After it is done with two coin combos, it moves to three coin combos, and
 then moves up the list using combos of four coins.
 
-####This is the pseudocode you will need for the Coins.java assignment. If you have any questions,
-feel free to contact me.
+####This is the pseudocode you will need for the Coins.java assignment. 
+If you have any questions, feel free to contact me.
