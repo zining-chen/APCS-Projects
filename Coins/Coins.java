@@ -68,13 +68,13 @@ public class Coins {
 	 * @param The number of dimes
 	 * @param The number of nickels
 	 */
-	private void printCoins (int total, int quarters, int dimes, int nickels) {
+	private void printCoins (int total, int q, int d, int n) {
 		// Printf with 8 spaces for words and 6 for the numbers
 		System.out.printf("%8s: %6d %8s: %6d %8s: %6d %8s: %6d \n",
-			 "Quarters", quarters,
-                         "Dimes", dimes,
-                         "Nickels", nickels,
-                         "Pennies", (total - (quarters*25) - (dimes*10) - (nickels*5)));
+			 "Quarters", q,
+                         "Dimes", d,
+                         "Nickels", n,
+                         "Pennies", (total - (q*25) - (d*10) - (n*5)));
 	}
 
 }
