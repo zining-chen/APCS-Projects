@@ -1,0 +1,51 @@
+Last login: Mon Sep 21 18:00:36 on ttys001
+Adityas-MacBook-Pro:Resources Aditya$ java WordUtilities
+List of 3 to 12 letter to search:  -> awieufb
+             ab             ae             ai             aw            awe
+             ba             be           beau             bi            eau
+             ef             fa            feu            few            fib
+            fie            fub             if            wab            wae
+           waif             we            web           wife
+
+
+	waif
+	Score:710
+Adityas-MacBook-Pro:Resources Aditya$ java WordUtilities
+List of 3 to 12 letter to search:  -> qowieury
+             er           euro            ire             oe             or
+            ore            our          ourie             ow            owe
+             oy           oyer          query           quey          quire
+             re            rei            roe          roque           roue
+            row            rue            rye             we           weir
+           wire           wiry             wo            woe           wore
+            wry            wye             ye            yew             yo
+           yore            you           your            yow           yowe
+          yowie
+
+
+	query
+	Score:717
+Adityas-MacBook-Pro:Resources Aditya$ java WordUtilities
+List of 3 to 12 letter to search:  -> hhhhhhh
+
+No words found.
+Adityas-MacBook-Pro:Resources Aditya$ java WordUtilities
+List of 3 to 12 letter to search:  -> qweirunn
+             en          ennui             er            ern             in
+            inn          inner          inure          inurn            ire
+             ne            new           nine             nu            nun
+          quern           quin          quire             re            rei
+           rein          renin         requin          rewin            rin
+            rue           ruin            run           rune             un
+          urine            urn             we           weir            wen
+            win           wine         winner           wire           wren
+
+
+
+	requin
+	Score:715
+Adityas-MacBook-Pro:Resources Aditya$ java WordUtilities
+List of 3 to 12 letter to search:  -> urururu
+
+No words found.
+Adityas-MacBook-Pro:Resources Aditya$ 
