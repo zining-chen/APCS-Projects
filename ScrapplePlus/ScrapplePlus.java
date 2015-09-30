@@ -373,19 +373,6 @@ public class ScrapplePlus {
 		 */
 		public void showEndStatus(){
 			System.out.println();
-			System.out.println("Here are the tiles remaining in the pool of letters:\n");
-			int counterrr = 0;
-			for (int i = 0; i<100;i++){
-
-				if(tile[i] == true){
-					System.out.print(tiles[i]+" ");
-					counterrr ++;
-					if(counterrr%20 == 0&&counterrr!=0){
-						System.out.print(counterrr);
-						System.out.println();
-					}
-				}
-			}
             // Print scores
 			System.out.println();
 			System.out.println();
@@ -393,8 +380,10 @@ public class ScrapplePlus {
 			System.out.println();
 			System.out.println("No more words can be created");
 			System.out.println("Player Score:" + score[0]);
-			System.out.println("Computer Score:" +score[1]);
-			System.out.println("THANK YOU FOR PLAYING!");
+			System.out.println("Computer Score:" + score[1]);
+			System.out.println("SEE YOU NEXT TIME!");
+			System.out.println();
+			System.out.println();
 			System.exit(1);
 		}
 
