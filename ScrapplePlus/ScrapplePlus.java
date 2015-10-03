@@ -376,14 +376,17 @@ public class ScrapplePlus {
             // Print scores
 			System.out.println();
 			System.out.println();
-			System.out.println();
-			System.out.println();
-			System.out.println("No more words can be created");
-			System.out.println("Player Score:" + score[0]);
+			System.out.println("The Pool has been exhausted\n");
+            System.out.println("Player Score:" + score[0]);
 			System.out.println("Computer Score:" + score[1]);
-			System.out.println("SEE YOU NEXT TIME!");
 			System.out.println();
-			System.out.println();
+			if (score[0] > score[1])
+                System.out.println("Player Wins");
+            else if (score[1] > score[0])
+                System.out.println("Computer Wins");
+            else 
+                System.out.println("It was a draw");
+            System.out.println();
 			System.exit(1);
 		}
 
