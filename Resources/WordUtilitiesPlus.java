@@ -102,7 +102,7 @@ public class WordUtilitiesPlus {
 	/**
 	 *  Determines if a word can be formed by a list of letters.
 	 *
-	 *  @param temp  The word to be tested.
+	 *  @param word The word to be tested.
 	 *  @param letters  A string of the list of letter
 	 *  @return   True if word can be formed, false otherwise
 	 */
@@ -163,7 +163,7 @@ public class WordUtilitiesPlus {
     /**
 	 *  Finds the highest scoring word according to Scrabble rules using a String of letters
 	 *
-	 *  @param word  An array of words to check.
+	 *  @param letters  An array of words to check.
 	 *  @param scoretable  An array of 26 integer scores in letter order.
 	 *  @return   The word with the highest score.
 	 */
