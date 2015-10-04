@@ -3,7 +3,7 @@
 import java.awt.Graphics;
 import java.awt.Color;
 
-public class RollingDie extends Dice {
+public class RollingDie {
 
   private static final double slowdown = 0.97,
                               speedFactor = 0.04,
@@ -41,8 +41,7 @@ public class RollingDie extends Dice {
   /**
    * Starts Dice Roll
    */
-   public void roll() {
-    super.roll();
+  public void roll() {
     int width = tableRight - tableLeft;
     int height = tableBottom - tableTop;
     xCenter = tableLeft;
@@ -75,7 +74,7 @@ public class RollingDie extends Dice {
   /**
    * Moves the die on the table
    */
-  private void move() {
+  private void move () {
     xCenter += xSpeed;
     yCenter += ySpeed;
 
@@ -103,8 +102,8 @@ public class RollingDie extends Dice {
   }
 
   /**
-   * Draws the die, moving or stopped
-   */
+  * Draws the die, moving or stopped
+  */
   public void draw(Graphics g) {
     if (xCenter < 0 || yCenter < 0)
       return;
@@ -173,7 +172,7 @@ public class RollingDie extends Dice {
         g.fillOval(x2, y2, dotSize, dotSize);
         break;
       case 2:
-        g.fillOval(x3, y1, dotsize, dotSize);
+        g.fillOval(x3, y1, dotSize, dotSize);
         g.fillOval(x1, y3, dotSize, dotSize);
         break;
       case 3:
@@ -196,7 +195,7 @@ public class RollingDie extends Dice {
         break;
       case 6:
         g.fillOval(x1, y1, dotSize, dotSize);
-        g.gillOval(x2, y1, dotSize, dotSize);
+        g.fillOval(x2, y1, dotSize, dotSize);
         g.fillOval(x3, y1, dotSize, dotSize);
         g.fillOval(x1, y3, dotSize, dotSize);
         g.fillOval(x2, y3, dotSize, dotSize);

@@ -2,15 +2,14 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class CrapsTest1 extends JFrame
-    implements ActionListener
-{
+public class CrapsTest extends JFrame implements ActionListener {
+
   private CrapsGame game;
   private JTextField input;
   private JTextArea display;
 
   // Constructor
-  public CrapsTest1()
+  public CrapsTest()
   {
     super("Craps: Test 1");
 
@@ -47,11 +46,10 @@ public class CrapsTest1 extends JFrame
 
   public static void main(String[] args)
   {
-    CrapsTest1 window = new CrapsTest1();
+    CrapsTest window = new CrapsTest();
     window.setBounds(100, 100, 300, 240);
     window.setDefaultCloseOperation(EXIT_ON_CLOSE);
     window.setResizable(false);
     window.setVisible(true);
   }
 }
-

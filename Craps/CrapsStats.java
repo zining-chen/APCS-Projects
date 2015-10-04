@@ -35,14 +35,14 @@ public class CrapsStats extends JFrame
     String s = numberIn.getText();
     int nGames = Integer.parseInt(s);
     int result, gameCount = 0, winCount = 0;
-    Die die1 = new Die();
-    Die die2 = new Die();
+    Dice die1 = new Dice(6);
+    Dice die2 = new Dice(6);
 
     while (gameCount < nGames)
     {
       die1.roll();
       die2.roll();
-      int total = die1.getNumDots() + die2.getNumDots();
+      int total = die1.getValue() + die2.getValue();
       result = game.processRoll(total);
       if (result != 0)
         gameCount++;
@@ -62,4 +62,3 @@ public class CrapsStats extends JFrame
     window.setVisible(true);
   }
 }
-
