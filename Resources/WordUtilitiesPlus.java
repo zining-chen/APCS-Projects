@@ -193,20 +193,20 @@ public class WordUtilitiesPlus {
 	 *  @return   The integer score of the word.
 	 */
     public static int getScoreBlanks (String word, int [] scoretable){
-		
+
 		word = word.toLowerCase();
         int tmp = 0;
-        
+
         for (int i =0; i < word.length(); i++) {
             tmp += scoretable[((int)word.charAt(i)-97)];
         }
-        
+
         for (int i = 0; i < word.length()-1; i++) {
         	if (word.charAt(i) == word.charAt(i+1)) {
         		tmp *= 2;
         	}
         }
-        
+
         return tmp;
     }
 
@@ -218,21 +218,21 @@ public class WordUtilitiesPlus {
 	 *  @return   The integer score of the word.
 	 */
     public static int getScore (String word, int [] scoretable){
-		
-		word = word.toLowerCase();
+
+        word = word.toLowerCase();
         int tmp = 0;
-        
+
         for (int i =0; i < word.length(); i++) {
             tmp += scoretable[((int)word.charAt(i)-97)];
         }
-        
+
         for (int i = 0; i < word.length()-1; i++) {
         	if (word.charAt(i) == word.charAt(i+1)) {
         		tmp *= 2;
         		System.out.println("DOUBLE WORD SCORE!");
         	}
         }
-        
+
         return tmp;
     }
 }

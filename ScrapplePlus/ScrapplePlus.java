@@ -15,16 +15,16 @@ public class ScrapplePlus {
 	// Setup Variables
 	public int [] scores = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 	private String tilesRemaining = "AAAAAAAAAABBCCDDDDEEEEEEEEEEEEEFFGGGHHIIIIIIIIIJKLLLLMMNNNNNNOOOOOOOOPPQRRRRRRSSSSTTTTTTUUUUVVWWXYYZ";
-  	private char [] tiles = new char[100]; 
-  	private boolean []tile = new boolean[100]; 
+  	private char [] tiles = new char[100];
+  	private boolean []tile = new boolean[100];
   	private int NUMTILES = 8;
 
   	// Hands
-	private char []player = new char[8]; 
-  	private char[] comp = new char[8]; 
+	private char []player = new char[8];
+  	private char[] comp = new char[8];
 
   	// Score
-  	private int []score = new int[2]; 
+  	private int []score = new int[2];
 	private boolean testLeft = false;
 	private WordUtilitiesPlus wordPlus = new WordUtilitiesPlus();
 
@@ -78,12 +78,12 @@ public class ScrapplePlus {
 			// Print various status such as hand, scores, etc.
 			printStatus();
 			// If user is active
-			if (userTurn) { 
+			if (userTurn) {
 				userTurnPlay();
 				userTurn = false;
 			}
 			// Or inactive
-			else { 
+			else {
 				computerTurnPlay();
 				userTurn = true;
 			}
@@ -112,7 +112,7 @@ public class ScrapplePlus {
 					if (i == 0) {
 						player[random] = tiles[random1];}
 					// ... Or Computer
-					else { 
+					else {
 						comp[random] = tiles[random1];
 					}
 					// Reset tileArray
@@ -225,9 +225,9 @@ public class ScrapplePlus {
 			}
 
 			// Choose random letters and refresh the missing letters
-			for(int j = 0; j<8;j++) { 
+			for(int j = 0; j<8;j++) {
 				if(tested[j] == true) {
-					// Count missing letters 
+					// Count missing letters
 					int counter_r = 0;
 					for(int i = 0; i < 100; i++) {
 						if(tile[i] == false) {
