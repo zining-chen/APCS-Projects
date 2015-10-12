@@ -71,8 +71,6 @@ class DrawNet extends JPanel {
 		
 		// Call drawAxes(axes, Graphics)
 		drawAxes(axes, frequency, g);
-		System.out.println("Drawing Axes: " + "Axes: " + axes + " Frequency: " + frequency);
-
 		axes = FractalValues.axisUser;
 		frequency = FractalValues.frequencyUser;
 		repaint();
