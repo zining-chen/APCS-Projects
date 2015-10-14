@@ -1,29 +1,42 @@
 /**
  * This class defines a Peg in the game PegMaster
- * 
+ *
  * @author Aditya Kalari
  * @version 15 October 2015
  */
- 
+
 public class Peg{
-	 
-	//values 'A' through 'F' and 'X'
-	private char letter;
-	
-	public Peg(){
-		letter = 'X';
-	}
-	
-	public Peg (char l){
-		letter = l;
-	}
-	
-	public char getLetter (){
-		return letter;
-	}
-	
-	public void setLetter (char l){
-		letter = l;
-	}
-	 
+
+    // Values 'A' through 'F' and 'X'
+    private char letter;
+
+    public Peg() {
+        letter = 'X';
+    }
+
+    /**
+     * Initializes new Peg with specific letter
+     */
+    public Peg (char l) {
+        letter = l;
+    }
+
+    /**
+     * Getter for the letter of this peg
+     *
+     * @return The letter of this peg
+     */
+    public char getLetter () {
+        return letter;
+    }
+
+    /**
+     * Setter for the character of the Peg
+     *
+     * @param l The character to set this Peg to
+     */
+    public void setLetter (char l) {
+        letter = l;
+    }
+
 }
