@@ -10,12 +10,14 @@ public class PegMaster {
     private static boolean reveal;				// Whether to reveal the master combination
     private static PegArray[] guessArray;		// The array of guess peg arrays
     private static PegArray master;				// The master (key) peg array
+	private static int turn;					// The turn of the game
 
     public PegMaster () {
         // INITIALIZE SETUPS
         reveal = false;
         guessArray = new PegArray[10];
         master = new PegArray();
+		turn = 1;
     }
 
     public static void main (String [] args) {
@@ -24,7 +26,6 @@ public class PegMaster {
         play.printIntroduction();
 
         // SETUP VARS
-        int turn = 0;
         for (int mastind = 0; mastind < 4; mastind++)
             master.setPeg(play.generateMaster(), mastind);
 
