@@ -7,7 +7,7 @@
 
 public class PegArray {
 
-    public Peg[] pegs;
+    private Peg[] pegs;
     private int exact;
     private int partial;
 
@@ -31,13 +31,31 @@ public class PegArray {
             pegs[peg] = new Peg();
         }
     }
+	
+	/**
+	 * Returns the specified Peg.
+	 *
+	 * @param num The index of the specified peg
+	 * @return The Peg that was requested
+	 */
+	public Peg getPeg (int num) {
+		return pegs[num];
+	}
+
+	/**
+	 * Sets a specified Peg.
+	 *
+	 * @param temp The value of the new peg
+	 * @param num The index of the new peg
+	 */
+	public void setPeg (Peg temp, int num) { pegs[num] = temp; }
 
     /**
      * Generates the number of matches
      *
      * @param master The master PegArray
      */
-    private void findMatches (PegArray master) {
+    public void findMatches (PegArray master) {
         findExacts(master);
         findPartials(master);
     }

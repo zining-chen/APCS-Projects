@@ -25,8 +25,8 @@ public class PegMaster {
 
         // SETUP VARS
         int turn = 0;
-        for (int mastind = 0; mastind < master.pegs.length; mastind++)
-            master.pegs[mastind] = play.generateMaster();
+        for (int mastind = 0; mastind < 4; mastind++)
+            master.setPeg(play.generateMaster(), mastind);
 
         while (!reveal) {
             play.printBoard();
@@ -67,10 +67,10 @@ public class PegMaster {
         for (int row = 0; row < 4; row++) {
 
             // Reveal the master pegs
-            if (reveal) System.out.printf("|   %c   |  |", master.pegs[row].getLetter());
+            if (reveal) System.out.printf("|   %c   |  |", master.getPeg(row).getLetter());
             else System.out.print("|  ***  |  |");
             for (int col = 0; col < 10; col++) {
-                char c = guessArray[col].pegs[row].getLetter();
+                char c = guessArray[col].getPeg(row).getLetter();
                 if (c != 'X') System.out.printf("  %c  |", c);
                 else System.out.printf("     |");
             }
@@ -79,15 +79,17 @@ public class PegMaster {
         }
         System.out.print("| Exact    ");
         for (int col = 0; col < 10; col++) {
-            int num = guessArray[col].findExacts(master);
+			guessArray[col].findMatches(master);
+			int num = guessArray[col].getExact();
             if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }
         System.out.println("|");
         System.out.print("| Partial  ");
         for (int col = 0; col < 10; col++) {
-            int num = guessArray[col].findPartials(master);
-            if (num > -1) System.out.printf("   %d  ", num);
+            guessArray[col].findMatches(master);
+            int num = guessArray[col].getPartial();
+			if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }
         System.out.println("|");
@@ -101,7 +103,7 @@ public class PegMaster {
      * @return The generated Peg
      */
     private Peg generateMaster () {
-        char letter = 96 + (int)(Math.random() * 5 + 1);
+        char letter = (char)(96 + (int)(Math.random() * 5 + 1));
         Peg random = new Peg (letter);
         return random;
     }
@@ -116,12 +118,12 @@ public class PegMaster {
         PegArray guess = new PegArray();
         char read = '0';
         // Cycle through the Array
-        for (int ind = 0; ind < guess.pegs.length; ind++) {
+        for (int ind = 0; ind < 4; ind++) {
             // Make sure to take only valid input
             while (read < 'a' && read > 'f') {
                 read = Prompt.getString("Enter your guess for the Peg:").charAt(0);
                 // Set the peg with the new character
-                guess.pegs[ind].setLetter(read);
+                guess.getPeg(ind).setLetter(read);
             }
         }
         return guess;
