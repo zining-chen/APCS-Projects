@@ -7,9 +7,9 @@
 
 public class PegMaster {
 
-    private boolean reveal;          // Whether to reveal the master combination
-    private PegArray[] guessArray;   // The array of guess peg arrays
-    private PegArray master;		     // The master (key) peg array
+    private static boolean reveal;				// Whether to reveal the master combination
+    private static PegArray[] guessArray;		// The array of guess peg arrays
+    private static PegArray master;				// The master (key) peg array
 
     public PegMaster () {
         // INITIALIZE SETUPS
@@ -26,11 +26,14 @@ public class PegMaster {
         // SETUP VARS
         int turn = 0;
         for (int mastind = 0; mastind < master.pegs.length; mastind++)
-            master.pegs[mastind] = generateMaster();
+            master.pegs[mastind] = play.generateMaster();
 
         while (!reveal) {
-            printBoard();
-            guessArray[turn] = getUserGuess();
+            play.printBoard();
+            play.guessArray[turn] = play.getUserGuess();
+			if (turn > 9)
+				reveal = true;
+			turn++;
         }
 
     }
@@ -64,10 +67,10 @@ public class PegMaster {
         for (int row = 0; row < 4; row++) {
 
             // Reveal the master pegs
-            if (reveal) System.out.printf("|   %c   |  |", master.getPeg(row).getLetter());
+            if (reveal) System.out.printf("|   %c   |  |", master.pegs[row].getLetter());
             else System.out.print("|  ***  |  |");
             for (int col = 0; col < 10; col++) {
-                char c = pegArray[col].getPeg(row).getLetter();
+                char c = guessArray[col].pegs[row].getLetter();
                 if (c != 'X') System.out.printf("  %c  |", c);
                 else System.out.printf("     |");
             }
@@ -76,14 +79,14 @@ public class PegMaster {
         }
         System.out.print("| Exact    ");
         for (int col = 0; col < 10; col++) {
-            int num = pegArray[col].getExactMatches();
+            int num = guessArray[col].findExacts(master);
             if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }
         System.out.println("|");
         System.out.print("| Partial  ");
         for (int col = 0; col < 10; col++) {
-            int num = pegArray[col].getPartialMatches();
+            int num = guessArray[col].findPartials(master);
             if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }

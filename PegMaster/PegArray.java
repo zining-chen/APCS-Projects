@@ -16,7 +16,7 @@ public class PegArray {
      */
     public PegArray () {
         pegs = new Peg[4];
-        for (int peg = 0; peg < num; peg++)
+        for (int peg = 0; peg < 4; peg++)
             pegs[peg] = new Peg();
     }
 
@@ -25,9 +25,9 @@ public class PegArray {
      *
      * @param num The number of Pegs being created
      */
-    public PegArray (int num) {
-        pegs = new Peg[num];
-        for (int peg = 0; peg < num; peg++) {
+    public PegArray (int number) {
+        pegs = new Peg[number];
+        for (int peg = 0; peg < pegs.length; peg++) {
             pegs[peg] = new Peg();
         }
     }
@@ -61,7 +61,7 @@ public class PegArray {
      *
      * @param master The master Peg Array
      */
-    private void getPartials (PegArray master) {
+    private void findPartials (PegArray master) {
         // Reset partials and recount for this guess
         partial = 0;
         for (int ind = 0; ind < pegs.length; ind++) {
@@ -77,7 +77,7 @@ public class PegArray {
      *
      * @return The exact matches
      */
-    public void getExact () { return exact; }
+    public int getExact () { return exact; }
 
 
     /**
@@ -85,6 +85,6 @@ public class PegArray {
      *
      * @return The partial matches
      */
-    public void getPartial () { return partial; }
+    public int getPartial () { return partial; }
 
 }
