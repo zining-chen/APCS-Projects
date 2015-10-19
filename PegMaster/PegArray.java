@@ -31,7 +31,7 @@ public class PegArray {
             pegs[peg] = new Peg();
         }
     }
-	
+
 	/**
 	 * Returns the specified Peg.
 	 *
@@ -42,13 +42,13 @@ public class PegArray {
 		return pegs[num];
 	}
 
-	/**
-	 * Sets a specified Peg.
-	 *
-	 * @param temp The value of the new peg
-	 * @param num The index of the new peg
-	 */
-	public void setPeg (Peg temp, int num) { pegs[num] = temp; }
+	 /**
+	  * Sets a specified Peg.
+	  *
+	  * @param temp The value of the new peg
+	  * @param num The index of the new peg
+	  */
+	  public void setPeg (Peg temp, int num) { pegs[num] = temp; }
 
     /**
      * Generates the number of matches

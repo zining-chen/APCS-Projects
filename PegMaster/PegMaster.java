@@ -7,17 +7,20 @@
 
 public class PegMaster {
 
-    private static boolean reveal;				// Whether to reveal the master combination
+    private static boolean reveal;				  // Whether to reveal the master combination
     private static PegArray[] guessArray;		// The array of guess peg arrays
-    private static PegArray master;				// The master (key) peg array
-	private static int turn;					// The turn of the game
+    private static PegArray master;				 // The master (key) peg array
+    private static int turn;					     // The turn of the game
 
     public PegMaster () {
         // INITIALIZE SETUPS
         reveal = false;
         guessArray = new PegArray[10];
+        for (int i = 0; i < 10; i++) {
+            guessArray[i] = new PegArray();
+        }
         master = new PegArray();
-		turn = 1;
+        turn = 1;
     }
 
     public static void main (String [] args) {
@@ -32,9 +35,9 @@ public class PegMaster {
         while (!reveal) {
             play.printBoard();
             play.guessArray[turn] = play.getUserGuess();
-			if (turn > 9)
-				reveal = true;
-			turn++;
+            if (turn > 9)
+                reveal = true;
+            turn++;
         }
 
     }
@@ -47,7 +50,7 @@ public class PegMaster {
         System.out.println("| The game of PegMaster is played on a four-peg gameboard, and six peg colors can    |");
         System.out.println("| be used.  First, the computer will choose a random combination of four pegs, using |");
         System.out.println("| some of the six colors (black, white, blue, green, yellow, and red).  Repeats are  |");
-        System.out.println("| allowed, so there are 6 * 6 * 6 * 6 = 1296 possible combinations.  This \"master    |");
+        System.out.println("| allowed, so there are 6 * 6 * 6 * 6 = 1296 possibe combinations.  This \"master    |");
         System.out.println("| combination\" is then hidden from the player, and the player starts making guesses  |");
         System.out.println("| at the master combination.  The player has 10 turns to guess the combination.      |");
         System.out.println("| Each time the player makes a guess for the 4-peg combination, the number of exact  |");
@@ -66,32 +69,30 @@ public class PegMaster {
         System.out.println("| MASTER      1     2     3     4     5     6     7     8     9     10 |");
         System.out.println("+-------+  +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+");
         for (int row = 0; row < 4; row++) {
-
-            // Reveal the master pegs
-            if (reveal) System.out.printf("|   %c   |  |", master.getPeg(row).getLetter());
-            else System.out.print("|  ***  |  |");
-            for (int col = 0; col < 10; col++) {
-                char c = guessArray[col].getPeg(row).getLetter();
-                if (c != 'X') System.out.printf("  %c  |", c);
-                else System.out.printf("     |");
-            }
-            System.out.println();
-            System.out.println("+-------+  +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+");
+          // Reveal the master pegs
+          if (reveal) System.out.printf("|   %c   |  |", master.getPeg(row).getLetter());
+          else System.out.print("|  ***  |  |");
+          for (int col = 0; col < 10; col++) {
+            char c = guessArray[col].getPeg(row).getLetter();
+            if (c != 'X') System.out.printf("  %c  |", c);
+            else System.out.printf("     |");
+          }
+          System.out.println();
+          System.out.println("+-------+  +-----+-----+-----+-----+-----+-----+-----+-----+-----+-----+");
         }
         System.out.print("| Exact    ");
         for (int col = 0; col < 10; col++) {
-			guessArray[col].findMatches(master);
-			int num = guessArray[col].getExact();
-            if (num > -1) System.out.printf("   %d  ", num);
-            else System.out.printf("      ");
+          guessArray[col].findMatches(master);
+          int num = guessArray[col].getExact();
+          if (num > -1) System.out.printf("   %d  ", num);
+          else System.out.printf("      ");
         }
         System.out.println("|");
         System.out.print("| Partial  ");
         for (int col = 0; col < 10; col++) {
-            guessArray[col].findMatches(master);
-            int num = guessArray[col].getPartial();
-			if (num > -1) System.out.printf("   %d  ", num);
-            else System.out.printf("      ");
+          int num = guessArray[col].getPartial();
+          if (num > -1) System.out.printf("   %d  ", num);
+          else System.out.printf("      ");
         }
         System.out.println("|");
         System.out.println("+----------------------------------------------------------------------+");
