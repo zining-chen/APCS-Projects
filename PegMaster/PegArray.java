@@ -9,6 +9,7 @@ public class PegArray {
 
     // FIELDS TO HOLD GUESSES
     private Peg[] pegs;
+    private boolean[] exactMatch;
     private int exact;
     private int partial;
 
@@ -20,6 +21,7 @@ public class PegArray {
         pegs = new Peg[4];
         for (int peg = 0; peg < 4; peg++)
             pegs[peg] = new Peg();
+        exactMatch = new boolean[4];
     }
 
     /**
@@ -32,6 +34,7 @@ public class PegArray {
         pegs = new Peg[number];
         for (int peg = 0; peg < pegs.length; peg++)
             pegs[peg] = new Peg();
+        exactMatch = new boolean[number];
     }
 
 	/**
@@ -72,8 +75,10 @@ public class PegArray {
     private void findExacts (PegArray master) {
         // Reset exacts and recount for this guess
         for (int ind = 0; ind < pegs.length; ind++) {
-            if (master.getPeg(ind).getLetter() == (pegs[ind]).getLetter())
+            if (master.getPeg(ind).getLetter() == (pegs[ind]).getLetter()) {
                 exact++;
+                exactMatch[ind] = true;
+            }
         }
     }
 
@@ -84,12 +89,11 @@ public class PegArray {
      */
     private void findPartials (PegArray master) {
         // Reset partials and recount for this guess
-        for (int ind = 0; ind < 4; ind++) {
+        for (int ind = 0; ind < pegs.length; ind++) {
             // Loop through each array making sure not to count duplicates
 
-            for (int indG = 0; indG < 4; indG++) {
-                if (master.pegs[ind].getLetter() == pegs[indG].getLetter() &&
-                    master.pegs[indG].getLetter() != pegs[indG].getLetter())
+            for (int indG = 0; indG < pegs.length; indG++) {
+                if (master.pegs[ind].getLetter() == pegs[indG].getLetter() && !exactMatch[ind])
                     partial++;
            	}
         }
