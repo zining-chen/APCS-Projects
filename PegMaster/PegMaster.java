@@ -10,19 +10,19 @@ public class PegMaster {
     private static boolean reveal;				// Whether to reveal the master combination
     private static PegArray[] guessArray;		// The array of guess peg arrays
     private static PegArray master;				// The master (key) peg array
-	private static int turn;					// The turn of the game
+    private static int turn;					// The turn of the game
 
     public PegMaster () {
         // INITIALIZE SETUPS
         reveal = false;
         guessArray = new PegArray[10];
         master = new PegArray();
-		for (int i = 0; i < 10; i++) {
-			guessArray[i] = new PegArray();
-			for (int j = 0; j < 4; j++)
-			guessArray[i].setPeg(new Peg(), j);
-		}
-		turn = 0;
+        for (int i = 0; i < 10; i++) {
+            guessArray[i] = new PegArray();
+            for (int j = 0; j < 4; j++)
+                guessArray[i].setPeg(new Peg(), j);
+        }
+        turn = 0;
     }
 
     public static void main (String [] args) {
@@ -37,9 +37,11 @@ public class PegMaster {
         while (!reveal) {
             play.printBoard();
             play.guessArray[turn] = play.getUserGuess();
-			if (turn == 9)
-				reveal = true;
-			turn++;
+            if (turn == 9)
+                reveal = true;
+            if (guessArray[turn].equals(master))
+                reveal = true;
+            turn++;
         }
 
         play.printBoard();
@@ -87,8 +89,8 @@ public class PegMaster {
         }
         System.out.print("| Exact    ");
         for (int col = 0; col < 10; col++) {
-			guessArray[col].findMatches(master);
-			int num = guessArray[col].getExact();
+            guessArray[col].findMatches(master);
+            int num = guessArray[col].getExact();
             if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }
@@ -97,7 +99,7 @@ public class PegMaster {
         for (int col = 0; col < 10; col++) {
             guessArray[col].findMatches(master);
             int num = guessArray[col].getPartial();
-			if (num > -1) System.out.printf("   %d  ", num);
+            if (num > -1) System.out.printf("   %d  ", num);
             else System.out.printf("      ");
         }
         System.out.println("|");
@@ -129,13 +131,11 @@ public class PegMaster {
         for (int ind = 0; ind < 4; ind++) {
             // Make sure to take only valid input
             if (read == '0') {
-                read = Prompt.getString("Enter your guess for the Peg:").charAt(0);
-                // Set the peg with the new character
-                System.out.println(ind);
+                read = Prompt.getString("Enter your guess for the Peg:").charAt(0); // Set the peg with the new character
                 guess.getPeg(ind).setLetter(read);
                 if (ind != 4) {
-					read = '0';
-				}
+                    read = '0';
+                }
             }
         }
         return guess;
