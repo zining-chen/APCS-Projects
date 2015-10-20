@@ -27,11 +27,10 @@ public class PegArray {
      */
     public PegArray (int number) {
         pegs = new Peg[number];
-        for (int peg = 0; peg < pegs.length; peg++) {
+        for (int peg = 0; peg < pegs.length; peg++)
             pegs[peg] = new Peg();
-        }
     }
-
+	
 	/**
 	 * Returns the specified Peg.
 	 *
@@ -42,13 +41,13 @@ public class PegArray {
 		return pegs[num];
 	}
 
-	 /**
-	  * Sets a specified Peg.
-	  *
-	  * @param temp The value of the new peg
-	  * @param num The index of the new peg
-	  */
-	  public void setPeg (Peg temp, int num) { pegs[num] = temp; }
+	/**
+	 * Sets a specified Peg.
+	 *
+	 * @param temp The value of the new peg
+	 * @param num The index of the new peg
+	 */
+	public void setPeg (Peg temp, int num) { pegs[num] = temp; }
 
     /**
      * Generates the number of matches
@@ -67,9 +66,8 @@ public class PegArray {
      */
     private void findExacts (PegArray master) {
         // Reset exacts and recount for this guess
-        exact = 0;
         for (int ind = 0; ind < pegs.length; ind++) {
-            if (master.pegs[ind] == pegs[ind])
+            if (master.getPeg(ind).equals(pegs[ind]))
                 exact++;
         }
     }
@@ -81,13 +79,12 @@ public class PegArray {
      */
     private void findPartials (PegArray master) {
         // Reset partials and recount for this guess
-        partial = 0;
-        for (int ind = 0; ind < pegs.length; ind++) {
-            for (int indG = 0; indG < pegs.length; ind++) {
-                if (master.pegs[indG] == pegs[ind])
-                    partial++;
-            }
-        }
+        for (int ind = 0; ind < 4; ind++) {
+            for (int indG = 0; indG < 4; indG++) {
+                if (master.pegs[ind] == pegs[indG])
+					partial++;
+           	}
+	    }
     }
 
     /**
