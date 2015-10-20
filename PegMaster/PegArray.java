@@ -7,6 +7,7 @@
 
 public class PegArray {
 
+    // FIELDS TO HOLD GUESSES
     private Peg[] pegs;
     private int exact;
     private int partial;
@@ -15,6 +16,7 @@ public class PegArray {
      * Initializes four pegs
      */
     public PegArray () {
+        // Setup four new pegs
         pegs = new Peg[4];
         for (int peg = 0; peg < 4; peg++)
             pegs[peg] = new Peg();
@@ -23,9 +25,10 @@ public class PegArray {
     /**
      * Initializes a specific number of pegs
      *
-     * @param num The number of Pegs being created
+     * @param number The number of Pegs being created
      */
     public PegArray (int number) {
+        // Setup specific number of Pegs
         pegs = new Peg[number];
         for (int peg = 0; peg < pegs.length; peg++)
             pegs[peg] = new Peg();
@@ -76,21 +79,22 @@ public class PegArray {
 
     /**
      * Finds the number of partial matches
-     * 
+     *
      * @param master The master Peg Array
      */
     private void findPartials (PegArray master) {
         // Reset partials and recount for this guess
         for (int ind = 0; ind < 4; ind++) {
+            // Loop through each array making sure not to count duplicates
+
             for (int indG = 0; indG < 4; indG++) {
                 if (master.pegs[ind].getLetter() == pegs[indG].getLetter() &&
                     master.pegs[indG].getLetter() != pegs[indG].getLetter())
                     partial++;
            	}
         }
-        if (partial > 4) {
-            partial = 4;
-        }
+        // Makes sure Partial doesnt exceed 4
+        if (partial > 4) partial = 4;
     }
 
     /**

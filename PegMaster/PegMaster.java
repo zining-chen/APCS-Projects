@@ -7,16 +7,17 @@
 
 public class PegMaster {
 
-    private static boolean reveal;				// Whether to reveal the master combination
+    private static boolean reveal;				  // Whether to reveal the master combination
     private static PegArray[] guessArray;		// The array of guess peg arrays
-    private static PegArray master;				// The master (key) peg array
-    private static int turn;					// The turn of the game
+    private static PegArray master;			  	// The master (key) peg array
+    private static int turn;					      // The turn of the game
 
     public PegMaster () {
         // INITIALIZE SETUPS
         reveal = false;
         guessArray = new PegArray[10];
         master = new PegArray();
+        // Initialize objects to avoid nullpointer
         for (int i = 0; i < 10; i++) {
             guessArray[i] = new PegArray();
             for (int j = 0; j < 4; j++)
@@ -34,8 +35,11 @@ public class PegMaster {
         for (int mastind = 0; mastind < 4; mastind++)
             master.setPeg(play.generateMaster(), mastind);
 
+        // While user either hasnt guessed the puzzle or hasnt reached the last turn
         while (!reveal) {
+            // Reprint the board
             play.printBoard();
+            // Get the user Guesses
             play.guessArray[turn] = play.getUserGuess();
             if (turn == 9)
                 reveal = true;
@@ -48,6 +52,9 @@ public class PegMaster {
 
     }
 
+    /**
+     * Prints Game intro
+     */
     private void printIntroduction() {
         System.out.println("\n");
         System.out.println("+------------------------------------------------------------------------------------+");
@@ -69,6 +76,9 @@ public class PegMaster {
         System.out.println("\n");
     }
 
+    /**
+     * Prints the board with new variables
+     */
     private void printBoard() {
         System.out.println();
         System.out.println("+----------------------------------------------------------------------+");
@@ -113,6 +123,7 @@ public class PegMaster {
      * @return The generated Peg
      */
     private Peg generateMaster () {
+        // Generate random character
         char letter = (char)(96 + (int)(Math.random() * 5 + 1));
         Peg random = new Peg (letter);
         return random;
@@ -131,7 +142,8 @@ public class PegMaster {
         for (int ind = 0; ind < 4; ind++) {
             // Make sure to take only valid input
             if (read == '0') {
-                read = Prompt.getChar("Enter your guess for the Peg:"); // Set the peg with the new character
+                read = Prompt.getChar("Enter your guess for the Peg");
+                // Set the peg with the new character
                 guess.getPeg(ind).setLetter(read);
                 if (ind != 4) {
                     read = '0';

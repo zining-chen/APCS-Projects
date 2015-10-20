@@ -16,6 +16,8 @@ public class Peg{
 
     /**
      * Initializes new Peg with specific letter
+     *
+     * @param l The letter to initialize with
      */
     public Peg (char l) {
         letter = l;
