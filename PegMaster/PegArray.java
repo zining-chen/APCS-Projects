@@ -76,16 +76,20 @@ public class PegArray {
 
     /**
      * Finds the number of partial matches
-     *
+     * 
      * @param master The master Peg Array
      */
     private void findPartials (PegArray master) {
         // Reset partials and recount for this guess
         for (int ind = 0; ind < 4; ind++) {
             for (int indG = 0; indG < 4; indG++) {
-                if (master.pegs[ind].getLetter() == pegs[indG].getLetter())
+                if (master.pegs[ind].getLetter() == pegs[indG].getLetter() &&
+                    master.pegs[indG].getLetter() != pegs[indG].getLetter())
                     partial++;
            	}
+        }
+        if (partial > 4) {
+            partial = 4;
         }
     }
 

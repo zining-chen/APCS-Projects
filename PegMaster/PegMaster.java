@@ -131,7 +131,7 @@ public class PegMaster {
         for (int ind = 0; ind < 4; ind++) {
             // Make sure to take only valid input
             if (read == '0') {
-                read = Prompt.getString("Enter your guess for the Peg:").charAt(0); // Set the peg with the new character
+                read = Prompt.getChar("Enter your guess for the Peg:"); // Set the peg with the new character
                 guess.getPeg(ind).setLetter(read);
                 if (ind != 4) {
                     read = '0';
