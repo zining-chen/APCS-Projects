@@ -25,22 +25,26 @@ public class PrettyPrint {
 		PrettyPrint indent = new PrettyPrint();
 		// Strip the file of all new Characters
 		String javafile = new String (args[0]);
-		contents = indent.javatoString(javafile);
-    contents = indent.stripContents (contents);
-    System.out.println(contents);
+		indent.contents = indent.javaToString(javafile, false);
+    indent.contents = indent.stripContents(indent.contents);
 	}
 
 	/**
 	 *  Converts java file to String
    *
    *  @param javaname The name of the java file
+   *  @param formatted Whether the function should return the formatted file or not
+   *  @return The file that has been read from the inputted javaname file.
    */
-	public String javaToString (String javaname) {
-		Scanner readJava = OpenFile.openToRead(javaname);
-    String file =  new String();
-		while (readJava.hasNext())
-			file += readJava.nextLine();
-    return file;
+  public String javaToString (String javaname, boolean formatted) {
+     Scanner readJava = OpenFile.openToRead(javaname);
+     String file =  new String();
+     while (readJava.hasNext()) {
+         file += readJava.nextLine();
+         if (formatted)
+             file += "\n";
+     }
+     return file;
   }
 
 
@@ -51,25 +55,15 @@ public class PrettyPrint {
    *  @return The stripped string withouth \n or \t characters
    */
   public String stripContents (String javafile) {
-
-      String strippedFile = new String ();
-      int nextReturn = 0;
-      int nextTab = 0;
-      int nextEscape = 0;
-
-      while (nextreturn != -1 || next != -1) {
-          // Find the first escape sequence
-          nextreturn = javafile.indexOf("\n");
-          nexttab = javafile.indexOf("\t");
-          nextEscape = Math.min(nextReturn, nextTab);
-          // Create Stripped file until next escape sequence
-          strippedFile = javafile.substring(0, nextEscape);
-          // Remove Stripped portion from the master string
-          javafile = javafile.substring(nextEscape + 1);
+      int nextEscape = -2;
+      String strippedFile = new String();
+      nextEscape = Math.min(javafile.indexOf("\n"), javafile.indexOf("\t"));
+      while (nextEscape != 0 && nextEscape != -1) {
+          strippedFile += javafile.substring(0, nextEscape);
+          javafile = javafile.substring(nextEscape+1);
+          nextEscape = Math.min(javafile.indexOf("\n"), javafile.indexOf("\t"));
       }
-
       return strippedFile;
-
   }
 
 	/**
