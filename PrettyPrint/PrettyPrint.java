@@ -1,42 +1,47 @@
+import java.util.Scanner;
+import java.io.PrintWriter;
+
 /**
- *  This programs recieves a text file, which is Java
- *  source code in one long line, and formats it using
- *  Allman Style convention. It outputs it to the terminal window.
+ *  Recieves a source code file and indents according to Allman Style
  *
  *  @author Aditya Kalari
  *  @version 20 October 2015
  */
-import java.util.Scanner;
-import java.io.PrintWriter;
 
-public class PrettyPrint {
+public class PrettyPrint
+{
 
 	private int numTabs = 0;
 
-	public static void main(String[] args){
-		PrettyPrint in = new PrettyPrint();
+	public static void main(String[] args)
+	{
+		PrettyPrint indent = new PrettyPrint();
 		String filename = args[0];
 		String outfile = args[0];
 		PrintWriter printer = OpenFile.openToWrite("Test.java");
-		String small = in.stripContents(filename);
-		String formattedCode = in.parseContents(small);
+		String small = indent.stripContents(filename);
+		String formattedCode = indent.parseContents(small);
 		System.out.print(formattedCode);
 		printer.print(formattedCode);
 		printer.close();
 	}
 	/**
-     *  Read in file and store contents into a String.
-     *  Go through the String and remove all tabs and newlines.
-     *  @param String: the name of the file that the user inputs as a command line argument
-     *  @return String: The large one line String with all the code, not formatted
-     */
-	public String stripContents(String filename) {
+    *  Read in file and store contents into a String.
+    *  Go through the String and remove all tabs and newlines.
+		*
+    *  @param filename the name of the file that the user inputs as a command line argument
+    *  @return The large one line String with all the code, not formatted
+    */
+	public String stripContents(String filename)
+	{
 		Scanner scan = OpenFile.openToRead(filename);
-		scan.useDelimiter("[ \t\r\n]+"); //takes away all the tabs and spaces
+		scan.useDelimiter("[ \t\r\n]+");
 		String code = "";
-		while (scan.hasNext()) {
+		while (scan.hasNext())
+		{
 			String s = scan.next();
-			if (s.length() > 0) {
+			if (s.length() > 0)
+			{
 				code += s;
 				code += " ";
 			}
@@ -44,11 +49,12 @@ public class PrettyPrint {
 		return code;
 	}
 	/**
-     *  Goes through the String and finds all the Comments
-     *   we have to mark in order to format them
-     *   @return returns the given comment with no format
-     *   @param string: The whole file in one String, int: where to start
-     */
+    *  Goes through the String and marks the comments
+		*
+    *   @return returns the given comment with no format
+    *   @param fileOneLine The whole file in one String
+		*		@param start Where to start in the file
+    */
 	public String parseBlockComment(String fileOneLine, int start)
 	{
 		String comment  = "";
@@ -57,7 +63,8 @@ public class PrettyPrint {
 			comment += fileOneLine.charAt(i);
 			if ((i < fileOneLine.length() - 2)
 				&& (fileOneLine.charAt(i + 1) == '*')
-				&& (fileOneLine.charAt(i + 2) == '/')) {
+				&& (fileOneLine.charAt(i + 2) == '/'))
+			{
 				comment += "*/";
 				return comment;
 			}
@@ -65,25 +72,33 @@ public class PrettyPrint {
 		return comment;
 	}
 	/**
-     *  Formats the Comments with the given marks by parseBlockComment
-     *  @return returns the newComment with the given format
-     *  @param the comment with no format
-     */
+    *  Formats the Comments with the given marks by parseBlockComment
+		*
+    *  @return returns NewComment with the given format
+    *  @param Unformatted Comment
+    */
 	public String parseComment(String comment)
 	{
 		String newComment = "/*";
-		for (int i = 2; i < comment.length(); i++) {
-			if (comment.charAt(i) != '*') {
+		for (int i = 2; i < comment.length(); i++)
+		{
+			if (comment.charAt(i) != '*')
+			{
 				newComment += comment.charAt(i);
-			} else {
-				if ((i < comment.length() - 1) && (comment.charAt(i + 1) == '/')) {
+			}
+			else
+			{
+				if ((i < comment.length() - 1) && (comment.charAt(i + 1) == '/'))
+				{
 					newComment += "\n" + " " + tabs();
 					newComment += comment.charAt(i);
 					newComment += comment.charAt(i + 1);
 					i++;
 					i+= lookAhead(comment, i+1);
 					newComment += '\n' + tabs();
-				} else {
+				}
+				else
+				{
 					newComment += "\n" + " " + tabs();
 					newComment += comment.charAt(i);
 				}
@@ -92,13 +107,15 @@ public class PrettyPrint {
 		return newComment;
 	}
 	/**
-     *  Finds all the ForBlocks.
-     *  @return true : if there is a forBlock, false: No forblock
-     *  @param string: The whole file in one String, int: where to start
-     */
+    *  Finds all the for loops
+		*
+    *  @return  If there is a for loop
+    *  @param string: The whole file in one String, int: where to start
+    */
 	public boolean parseForLoop(String fileOneLine, int start)
 	{
-		if (start < fileOneLine.length() - 5) {
+		if (start < fileOneLine.length() - 5)
+		{
 			String s = "";
 			for (int j = start; j < start + 5; j++)
 				s += fileOneLine.charAt(j);
@@ -109,6 +126,7 @@ public class PrettyPrint {
 	}
 	/**
      *  Formats all the for loops
+		 *
      *  @return returns the string with the formated forloops
      *  @param string: The whole file in one String, int: where to start
      */
@@ -120,39 +138,45 @@ public class PrettyPrint {
 		while (!done)
 		{
 			formatted += fileOneLine.charAt(i);
-			if (fileOneLine.charAt(i) == ')') {
+			if (fileOneLine.charAt(i) == ')')
+			{
 				count--;
 				if (count == 0)
 					return formatted;
-			} else if (fileOneLine.charAt(i) == '(')
+			}
+			else if (fileOneLine.charAt(i) == '(')
 				count ++;
 			i++;
 		}
 		return formatted;
 	}
 	/**
-     *  Skips all the extra Spaces in the String
-     *  @return 0
-     *  @param string: The whole file in one String, int: where to start
-     */
+    *  Skips all the extra Spaces in the String
+		*
+    *  @return 0
+    *  @param string: The whole file in one String, int: where to start
+    */
 	public int lookAhead(String fileOneLine, int start)
 	{
 		if ((start < fileOneLine.length() - 1)
-				&& (fileOneLine.charAt(start + 1) == ' ')) {
+				&& (fileOneLine.charAt(start + 1) == ' '))
+				{
 			return 1;
 		}
 		return 0;
 	}
 	/**
-     *  Should there be a tab before the brace in a Forloop
-     *  @return true : there should be a tab, false: there should not be a tab
-     *  @param string: formated for Loop
-     */
+    *  Whether there should be a tab before the brace in a for loop
+		*
+    *  @return Whether there should be a tab
+    *  @param Formatted for loop
+    */
 	public boolean parseForBrace(String formatted)
 	{
 		if (formatted.length() < 4)
 			return false;
-		for (int j = formatted.length() - 4; j < formatted.length(); j++) {
+		for (int j = formatted.length() - 4; j < formatted.length(); j++)
+		{
 			if (formatted.charAt(j) != ' ')
 				return false;
 		}
@@ -160,50 +184,64 @@ public class PrettyPrint {
 	}
 	/**
      *  Formats all the code with the methods above.
-     *  Maniplulates them in order for the program to work
-     *  @return string with all the formated code
-     *  @param string: The whole file in one String
+		 *  Runs a case based on which key the sentence starts with.
+		 *
+     *  @return Formatted String of Code
+     *  @param The whole file in a single String
      */
 	public String parseContents(String fileOneLine) {
 		String formatted = "";
-		for (int i = 0; i < fileOneLine.length(); i++) {
-			// keep track of blocks - comments and for loops
+		for (int i = 0; i < fileOneLine.length(); i++)
+		{
 			char c = fileOneLine.charAt(i);
-			if (i < (fileOneLine.length() - 1) && fileOneLine.charAt(i) == '/' && fileOneLine.charAt(i+1) == '*' ) { //comment format
+			if (i < (fileOneLine.length() - 1) && fileOneLine.charAt(i) == '/' && fileOneLine.charAt(i+1) == '*' )
+			{
 				String comment = parseBlockComment(fileOneLine, i);
 				formatted += parseComment(comment);
-				i += comment.length()-1; // ++i still to follow
+				i += comment.length()-1;
 				i += lookAhead(fileOneLine, i);
-			} else if (fileOneLine.charAt(i) == 'f' && parseForLoop(fileOneLine, i)) {
+			}
+			else if (fileOneLine.charAt(i) == 'f' && parseForLoop(fileOneLine, i))
+			{
 				String forBlock = fixParsedLoop(fileOneLine, i);
-				i += forBlock.length()-1; // ++i still to follow
+				i += forBlock.length()-1;
 				formatted += forBlock;
-			} else if (fileOneLine.charAt(i) == ';') { // semi colon format
+			}
+			else if (fileOneLine.charAt(i) == ';')
+			{
 				formatted += ";" + "\n" + tabs();
 				i += lookAhead(fileOneLine, i);
-			} else if (fileOneLine.charAt(i) == '{') { //bracket format
+			}
+			else if (fileOneLine.charAt(i) == '{')
+			{
 				i += lookAhead(fileOneLine, i);
 				formatted += "\n" + tabs() + "{" + "\n";
 				numTabs++;
 				formatted += tabs();
-			} else if (fileOneLine.charAt(i) == '}') {
+			}
+			else if (fileOneLine.charAt(i) == '}')
+			{
 				if (parseForBrace(formatted))
 					formatted = formatted.substring(0, formatted.length() - 4);
 				numTabs--;
 				i += lookAhead(fileOneLine, i);
 				formatted += "}" + "\n" + tabs();
-			} else {
+			}
+			else
+			{
 				formatted += fileOneLine.charAt(i);
 			}
 		}
-		formatted = formatted.substring(0, formatted.length()-7);
+		formatted = formatted.substring(0, formatted.length()-7) + "   }\n}";
 		return formatted;
 	}
 	/**
-     *  Inserts Tabs inside the Program
-     *  @return the formated code in a String with all the necessary tabs
-     */
-	public String tabs() {
+    *  Inserts Tabs inside the Program
+		*
+    *  @return the formated code in a String with all the necessary tabs
+    */
+	public String tabs()
+	{
 		String str = "";
 		for (int i = 0; i < this.numTabs; i++)
 			str += "    ";
