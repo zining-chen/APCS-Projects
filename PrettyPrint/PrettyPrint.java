@@ -75,7 +75,7 @@ public class PrettyPrint
     *  Formats the Comments with the given marks by parseBlockComment
 		*
     *  @return returns NewComment with the given format
-    *  @param Unformatted Comment
+    *  @param comment Unformatted Comment
     */
 	public String parseComment(String comment)
 	{
@@ -110,7 +110,8 @@ public class PrettyPrint
     *  Finds all the for loops
 		*
     *  @return  If there is a for loop
-    *  @param string: The whole file in one String, int: where to start
+    *  @param fileOneLine The whole file in one String
+		*	 @param start Where to start
     */
 	public boolean parseForLoop(String fileOneLine, int start)
 	{
@@ -127,8 +128,9 @@ public class PrettyPrint
 	/**
      *  Formats all the for loops
 		 *
-     *  @return returns the string with the formated forloops
-     *  @param string: The whole file in one String, int: where to start
+     *  @return Returns the string with the formated forloops
+     *  @param fileOneLine The whole file in one String
+		 *  @param start Where to start reformatting
      */
 	public String fixParsedLoop(String fileOneLine, int start)
 	{
@@ -151,10 +153,11 @@ public class PrettyPrint
 		return formatted;
 	}
 	/**
-    *  Skips all the extra Spaces in the String
+    *  Skips all characters that should be ommitted from final formatting
 		*
     *  @return 0
-    *  @param string: The whole file in one String, int: where to start
+    *  @param fileOneLine The whole file in one String
+		*  @param start Where to start looking ahead in the file
     */
 	public int lookAhead(String fileOneLine, int start)
 	{
@@ -169,7 +172,7 @@ public class PrettyPrint
     *  Whether there should be a tab before the brace in a for loop
 		*
     *  @return Whether there should be a tab
-    *  @param Formatted for loop
+    *  @param formatted Formatted for loop
     */
 	public boolean parseForBrace(String formatted)
 	{
@@ -183,12 +186,12 @@ public class PrettyPrint
 		return true;
 	}
 	/**
-     *  Formats all the code with the methods above.
-		 *  Runs a case based on which key the sentence starts with.
-		 *
-     *  @return Formatted String of Code
-     *  @param The whole file in a single String
-     */
+    *  Formats all the code with the methods above.
+		*  Runs a case based on which key the sentence starts with.
+		*
+    *  @return Formatted String of Code
+    *  @param fileOneLine The whole file in a single String
+    */
 	public String parseContents(String fileOneLine) {
 		String formatted = "";
 		for (int i = 0; i < fileOneLine.length(); i++)
@@ -238,7 +241,7 @@ public class PrettyPrint
 	/**
     *  Inserts Tabs inside the Program
 		*
-    *  @return the formated code in a String with all the necessary tabs
+    *  @return The formatted Line with the extra tabs put in
     */
 	public String tabs()
 	{
